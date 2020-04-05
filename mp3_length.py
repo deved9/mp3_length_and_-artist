@@ -1,5 +1,4 @@
 from mutagen.mp3 import MP3
-from mutagen.easyid3 import EasyID3
 from mutagen import MutagenError
 import os
 from stat import *
@@ -20,14 +19,6 @@ def iterate_in_folder(path):
             print(str(item) + "  " + str(audio.info.length))
             num += 1
             ln += audio.info.length
-            try:
-                audio = EasyID3(os.path.join(path,item))
-                if audio["artist"] != item[:item.index("-")-1]:
-                    audio["artist"] = item[:item.index("-")-1]
-                    audio.save(v2_version=3)
-            except ValueError:
-                pass
-
     return ln, num
 
 
