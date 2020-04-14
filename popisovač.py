@@ -17,9 +17,12 @@ def iterate_in_folder(path):
             print(str(item) + "  " + str(audio.info.length))
             try:
                 audio = EasyID3(os.path.join(path,item))
-                if audio["artist"] != item[:item.index("-")-1]:
-                    audio["artist"] = item[:item.index("-")-1]
-                    audio.save(v2_version=3)
+                audio["artist"] = item[:item.index("-")-1]
+                audio['genre'] = ''
+                audio['title'] = ''
+                audio['date'] = ''
+                audio['album'] = ''
+                audio.save(v2_version=3)
             except ValueError:
                 pass
 
