@@ -16,14 +16,17 @@ def iterate_in_folder(path):
             audio = MP3(os.path.join(path,item))
             print(str(item) + "  " + str(audio.info.length))
             try:
+                mp3 = MP3(os.path.join(path,item))
+                mp3.delete()
+                mp3.save()
                 audio = EasyID3(os.path.join(path,item))
                 audio["artist"] = item[:item.index("-")-1]
                 audio['genre'] = ''
-                audio['title'] = ''
+                audio['title'] = item[:item.index(".mp3")-1]
                 audio['date'] = ''
                 audio['album'] = ''
                 audio.save(v2_version=3)
             except ValueError:
-                pass
+                print('error occured')
 
 iterate_in_folder(path)
