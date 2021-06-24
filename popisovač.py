@@ -22,7 +22,7 @@ def iterate_in_folder(path):
                 audio = EasyID3(os.path.join(path,item))
                 audio["artist"] = item[:item.index("-")-1]
                 audio['genre'] = ''
-                audio['title'] = item[:item.index(".mp3")-1]
+                audio['title'] = item[:item.index(".mp3")]
                 audio['date'] = ''
                 audio['album'] = ''
                 audio.save(v2_version=3)
